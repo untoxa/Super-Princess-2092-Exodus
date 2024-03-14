@@ -1,7 +1,7 @@
 #include "Banks/SetAutoBank.h"
 #include "main.h"
 
-#include "gb/gb.h"
+#include <gbdk/platform.h>
 
 #include "ZGBMain.h"
 #include "Sprite.h"
@@ -47,7 +47,7 @@ UINT16 princess_old_x, princess_old_y;
 
 UINT8 bg_hidden = 0;
 
-void START() {
+void START(void) {
 	SetSpriteAnim(THIS, anim_idle, 3u);
 
 	princess_accel_y = 0;
@@ -64,13 +64,11 @@ void START() {
 	}
 }
 
-void Hit() {
+void Hit(void) {
 	princes_state = PRINCESS_STATE_HIT;
 	gbt_stop();
 
-	NR52_REG = 0x80; //Enables sound, you should always setup this first
-	NR51_REG = 0xFF; //Enables all channels (left and right)
-	NR50_REG = 0x77; //Max volume
+	sfx_sound_init();
 	PlayFx(CHANNEL_1, 10, 0x5b, 0x7f, 0xf7, 0x15, 0x86);
 }
 
@@ -79,7 +77,7 @@ extern INT8 load_next;
 
 extern UINT8 stage_completion;
 extern UINT8 current_stage;
-void CheckCollisionTile() {
+void CheckCollisionTile(void) {
 	switch(tile_collision) {
 		case 1u:
 			load_next = 1;
@@ -102,7 +100,7 @@ void CheckCollisionTile() {
 	}
 }
 
-void MovePrincess() {
+void MovePrincess(void) {
 	if(KEY_PRESSED(J_RIGHT)) {
 		tile_collision = TranslateSprite(THIS, 1 << delta_time, 0);
 		THIS->mirror = NO_MIRROR;
@@ -145,7 +143,7 @@ void MovePrincess() {
 #endif
 }
 
-void Shoot() {
+void Shoot(void) {
 	Sprite* bullet_sprite = SpriteManagerAdd(SpriteBullet, 0, 0);
 
 	bullet_sprite->mirror = THIS->mirror;
@@ -157,7 +155,7 @@ void Shoot() {
 	shoot_cooldown = 10;
 }
 
-void Jump() {
+void Jump(void) {
 	if(princes_state != PRINCESS_STATE_JUMPING) {
 		princess_accel_y = -50;
 		princes_state = PRINCESS_STATE_JUMPING;
@@ -167,7 +165,7 @@ void Jump() {
 	}
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	UINT8 i;
 	Sprite* spr;
 
@@ -321,7 +319,7 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() {
+void DESTROY(void) {
 	sprite_princess = 0;
 }
 

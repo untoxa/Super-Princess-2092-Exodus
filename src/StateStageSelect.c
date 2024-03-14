@@ -27,7 +27,7 @@ void SetStage(UINT8 stage) {
 	PlayFx(CHANNEL_1, 10, 0x17, 0x81, 0xF3, 0x62, 0x87);
 }
 
-void START() {
+void START(void) {
 	StopMusic;
 	if(stage_completion == 7) {
 		SetState(StateEnding);
@@ -48,7 +48,7 @@ void START() {
 	}
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	UINT8 tmp;
 	if(KEY_TICKED(J_LEFT)) {
 		for(tmp = current_stage - 1; tmp != 255; -- tmp) {

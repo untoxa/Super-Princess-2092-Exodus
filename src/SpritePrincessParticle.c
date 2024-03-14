@@ -19,16 +19,16 @@ void CreatePParticle(UINT16 x, UINT16 y, INT8 vx, INT8 vy) BANKED{
 	data->vy = vy;
 }
 
-void START() {
+void START(void) {
 	SetSpriteAnim(THIS, pparticle_anim_idle, 10u);
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	
 	THIS->x += (INT16)data->vx << delta_time;
 	THIS->y += (INT16)data->vy << delta_time;
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }

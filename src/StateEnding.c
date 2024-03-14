@@ -56,7 +56,7 @@ INT16 end_enemy_x;
 
 DECLARE_MUSIC(exo_ending);
 
-void PrepareEnemy() {
+void PrepareEnemy(void) {
 	struct EndSpriteInfo* info;
 
 	info = (struct EndSpriteInfo*)&endSpritesInfo[enemy_idx];
@@ -86,7 +86,7 @@ const char* Credits[] = {
 	""
 };
 
-void PrepareCredits() {
+void PrepareCredits(void) {
 	text_wait = 300;
 
 	PRINT(0, 0, Credits[enemy_idx ++]);
@@ -120,12 +120,9 @@ UINT8 STRLEN(const UINT8* str) {
 	return i;
 }
 
-void START() {
+void START(void) {
 	UINT8 i;
 
-	CRITICAL {
-		remove_LCD(LCD_isr);
-	}
 	SHOW_SPRITES;
 
 	scroll_target = 0;
@@ -138,7 +135,7 @@ void START() {
 	PRINT_POS(0, 0);
 	INIT_FONT(font, PRINT_WIN);
 	INIT_HUD(stageEndingWindow);
-	WY_REG = (144 - (6 << 3));
+	SetWindowY(144 - (6 << 3));
 
 	for(i = 0; i != N_SPRITE_TYPES; ++ i) {
 		SpriteManagerLoad(i);
@@ -158,7 +155,7 @@ void START() {
 }
 
 extern UINT8 next_oam_idx;
-void UPDATE() {
+void UPDATE(void) {
 	const struct EndSpriteInfo* info;
 
 	scroll_p_x.w += 32;

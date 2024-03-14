@@ -1,7 +1,7 @@
 #include "Banks/SetAutoBank.h"
 #include "main.h"
 
-#include <gb/gb.h>
+#include <gbdk/platform.h>
 #include "ZGBMain.h"
 #include "Scroll.h"
 #include "Keys.h"
@@ -15,7 +15,7 @@ DECLARE_MUSIC(exo_stage);
 extern UINT8 current_stage;
 extern UINT8 n_lives;
 
-void START() {
+void START(void) {
 	InitScroll(BANK(menuBG), &menuBG, 0, 0);
 
 	INIT_FONT(font, PRINT_BKG);
@@ -28,7 +28,7 @@ void START() {
 	PlayMusic(exo_stage, 0);
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	if(KEY_TICKED(J_START) | KEY_TICKED(J_A) | KEY_TICKED(J_B)) {
 		SetState(StateGame);
 	}

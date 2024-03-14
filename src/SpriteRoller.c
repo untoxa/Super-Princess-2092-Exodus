@@ -14,7 +14,7 @@ typedef struct {
 	fixed vy;
 } CUSTOM_DATA;
 
-void START() {
+void START(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 
 	data->vx.w = 0;
@@ -27,7 +27,7 @@ INT16 DispLeft(INT16 v, INT8 desp) {
 	return v >> desp;
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	
 	if(THIS->anim_data == 0) {
@@ -60,5 +60,5 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }

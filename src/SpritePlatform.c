@@ -13,7 +13,7 @@ typedef struct {
 	INT8 frame_accum;
 } CUSTOM_DATA;
 
-void START() {
+void START(void) {
 	UINT16 tile_x = THIS->x >> 3;
 	UINT16 tile_y = THIS->y >> 3;
 	UINT16 tile;
@@ -99,7 +99,7 @@ UINT8 CheckColl(UINT16 x1, UINT16 y1, UINT16 w1, UINT16 h1,
 	}
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	Sprite* sprite = THIS;
 	UINT8 offset_x = 8;
@@ -184,5 +184,5 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }

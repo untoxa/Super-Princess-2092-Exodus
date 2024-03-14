@@ -14,7 +14,7 @@ typedef struct {
 	UINT8 time_out;
 } CUSTOM_DATA;
 
-void START() {
+void START(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	SetSpriteAnim(THIS, mushroom_anim_hide, 3u);
 
@@ -23,7 +23,7 @@ void START() {
 
 extern Sprite* sprite_princess;
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	UINT8 x;
 	
@@ -48,5 +48,5 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }

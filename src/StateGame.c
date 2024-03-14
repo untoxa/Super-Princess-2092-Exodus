@@ -131,7 +131,7 @@ void InitPlayerPos(UINT16 tile_start_x, UINT16 tile_start_y) {
 	}
 }
 
-void START() {
+void START(void) {
 	UINT16 tile_start_x, tile_start_y;
 	const UINT8* coll_list = 0;
 	const UINT8* coll_down_list = 0;
@@ -188,7 +188,7 @@ void ScrollFindTileInCorners(UINT16 map_w, UINT16 map_h, const struct MapInfoBan
 }
 
 INT8 load_next = 0;
-void ClampScrollLimits();
+void ClampScrollLimits(void);
 void LoadNextScreen(UINT8 current_level, UINT8 next_level) {
 	Sprite* player = scroll_target;
 	INT16 scroll_start_x = scroll_x;
@@ -241,7 +241,12 @@ void LoadNextScreen(UINT8 current_level, UINT8 next_level) {
 	//Adding offset_x and offset_y will convert coordinates from old screen to the new one
 	scroll_offset_x = 0x1F & (scroll_offset_x - (offset_x >> 3));
 	scroll_start_x += offset_x;
+
+#if defined(NINTENDO)
 	scroll_offset_y = 0x1F & (scroll_offset_y - (offset_y >> 3));
+#elif defined(SEGA)
+	scroll_offset_y = (scroll_offset_y - (offset_y >> 3)) % (DEVICE_SCREEN_BUFFER_HEIGHT << 3);
+#endif
 	scroll_start_y += offset_y;
 
 	scroll_end_x = scroll_x;
@@ -298,7 +303,7 @@ void LoadNextScreen(UINT8 current_level, UINT8 next_level) {
 }
 
 UINT8 wait_end_time = 0;
-void UPDATE() {
+void UPDATE(void) {
 	if(sprite_princess == 0) {
 		wait_end_time ++;
 		if(wait_end_time > 80) {

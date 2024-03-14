@@ -18,7 +18,7 @@ const UINT8 anim_fly[] = {2, 0, 1};
 #define DIST_COUNTER 40
 #define ACCEL_OFFSET 4
 #define HEIGHT 50
-void START() {
+void START(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	
 	SetSpriteAnim(THIS, anim_fly, 33);
@@ -31,7 +31,7 @@ void START() {
 		THIS->mirror = V_MIRROR;
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 
 	if(scroll_target) {
@@ -79,5 +79,5 @@ void UPDATE() {
 	data->vy.b.h = 0;
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }

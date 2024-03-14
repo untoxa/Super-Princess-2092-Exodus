@@ -11,7 +11,7 @@ typedef struct {
 	UINT8 missile_launched;
 } CUSTOM_DATA;
 
-void START() {
+void START(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 
 	data->vx.w = 0;
@@ -19,7 +19,7 @@ void START() {
 	data->missile_launched = 0;
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	
 	if(data->vx.w == 0) {
@@ -48,5 +48,5 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }

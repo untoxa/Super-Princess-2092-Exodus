@@ -13,14 +13,14 @@ typedef struct {
 } CUSTOM_DATA;
 
 
-void START() {
+void START(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 
 	data->ty.w = 0;
 	data->vy.w = 255;
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 
 	if(U_LESS_THAN(data->vy.w, 1600)) {
@@ -36,6 +36,6 @@ void UPDATE() {
 	data->ty.b.h = 0;
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }
 

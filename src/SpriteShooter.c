@@ -11,7 +11,7 @@ typedef struct {
 	UINT8 cool_down;
 } CUSTOM_DATA;
 
-void START() { 
+void START(void) { 
 	UINT8 tile = GetScrollTile((THIS->x - 8) >> 3, THIS->y >> 3);
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	data->cool_down = 70;
@@ -21,7 +21,7 @@ void START() {
 	}
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	
 	data->cool_down += 1 << delta_time;
@@ -41,5 +41,5 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() { 
+void DESTROY(void) { 
 }

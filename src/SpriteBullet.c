@@ -8,11 +8,11 @@
 
 #include "Sound.h"
 
-void START() {
+void START(void) {
 	PlayFx(CHANNEL_1, 10, 0x2C, 0xD8, 0xF3, 0x62, 0xC7);
 }
 
-void UPDATE() {
+void UPDATE(void) {
 	UINT8 i;
 	Sprite* spr;
 	Sprite* spr2;
@@ -44,5 +44,5 @@ void UPDATE() {
 	}
 }
 
-void DESTROY() {
+void DESTROY(void) {
 }
