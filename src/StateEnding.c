@@ -123,6 +123,11 @@ UINT8 STRLEN(const UINT8* str) {
 void START(void) {
 	UINT8 i;
 
+	#if defined(NINTENDO)
+	CRITICAL {
+		remove_LCD(LCD_isr);
+	}
+	#endif
 	SHOW_SPRITES;
 
 	scroll_target = 0;
@@ -216,6 +221,6 @@ void UPDATE(void) {
 			break;
 	}
 
-	
+
 	scroll_p_x.b.h = 0;
 }
