@@ -12,10 +12,7 @@ IMPORT_MAP(pressstarttilemap);
 DECLARE_MUSIC(exo_start);
 
 void START(void) {
-#ifdef SEGA
-	__WRITE_VDP_REG(VDP_R2, R2_MAP_0x3800);
-	__WRITE_VDP_REG(VDP_R5, R5_SAT_0x3F00);
-#endif
+	MAP_OVERLAP_SPR;
 
 	InitScroll(BANK(pressstarttilemap), &pressstarttilemap, 0, 0);
 
