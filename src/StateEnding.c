@@ -38,6 +38,13 @@ struct EndSpriteInfo {
 	UINT8 anim_data[2];
 };
 
+
+#if defined(SEGA)
+#define TEXT_Y_OFS 12
+#else
+#define TEXT_Y_OFS 0
+#endif
+
 const struct EndSpriteInfo endSpritesInfo[] = {
 	{ SpriteMushroom, "Mushroom",              {1, 1}},
 	{ SpriteShooter,  "Shooter",               {1, 1}},
@@ -89,8 +96,8 @@ const char* Credits[] = {
 void PrepareCredits(void) {
 	text_wait = 300;
 
-	PRINT(0, 0, Credits[enemy_idx ++]);
-	PRINT(0, 2, Credits[enemy_idx ++]);
+	PRINT(0, TEXT_Y_OFS + 0, Credits[enemy_idx ++]);
+	PRINT(0, TEXT_Y_OFS + 2, Credits[enemy_idx ++]);
 }
 
 void SetEndState(UINT8 state) {
@@ -120,6 +127,13 @@ UINT8 STRLEN(const UINT8* str) {
 	return i;
 }
 
+#if defined(SEGA)
+void LCD_noscroll(void) NONBANKED {
+	if (_shadow_OAM_OFF) return;
+	VDP_CMD = 0; VDP_CMD = VDP_RSCX;
+}
+#endif
+
 void START(void) {
 	UINT8 i;
 
@@ -127,6 +141,12 @@ void START(void) {
 	CRITICAL {
 		remove_LCD(LCD_isr);
 	}
+	#elif defined(SEGA)
+	CRITICAL {
+		add_LCD(LCD_noscroll);
+	}
+	__WRITE_VDP_REG(VDP_R10, ((DEVICE_SCREEN_Y_OFFSET + TEXT_Y_OFS) << 3) - 1);
+	set_interrupts(VBL_IFLAG | LCD_IFLAG);
 	#endif
 	SHOW_SPRITES;
 
@@ -137,10 +157,13 @@ void START(void) {
 	}
 	scroll_p_x.w = 0;
 
-	PRINT_POS(0, 0);
+	#if defined(NINTENDO)
 	INIT_FONT(font, PRINT_WIN);
 	INIT_HUD(stageEndingWindow);
 	SetWindowY(144 - (6 << 3));
+	#elif defined(SEGA)
+	INIT_FONT(font, PRINT_BKG);
+	#endif
 
 	for(i = 0; i != N_SPRITE_TYPES; ++ i) {
 		SpriteManagerLoad(i);
@@ -184,7 +207,7 @@ void UPDATE(void) {
  					end_enemy_x -= (UINT16)1;
 					if(end_enemy_x <= 72) {
 						text_wait = 100;
-						PRINT((20u - STRLEN(endSpritesInfo[enemy_idx].name)) >> 1, 4, endSpritesInfo[enemy_idx].name);
+						PRINT((20u - STRLEN(endSpritesInfo[enemy_idx].name)) >> 1, TEXT_Y_OFS + 4, endSpritesInfo[enemy_idx].name);
 					}
 				} else {
 					end_enemy_x --;
@@ -201,7 +224,7 @@ void UPDATE(void) {
 			} else {
 				text_wait --;
 				if(text_wait == 0) {
-					PRINT(0, 4, "                    ");
+					PRINT(0, TEXT_Y_OFS + 4, "                    ");
 				}
 			}
 			end_sprite->x = scroll_x + (UINT16)end_enemy_x;
