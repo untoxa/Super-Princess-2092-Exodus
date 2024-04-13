@@ -5,6 +5,8 @@
 #include "ZGBMain.h"
 #include "Sound.h"
 
+#include "Sounds.h"
+
 typedef struct {
 	INT8 vx;
 	INT8 vy;
@@ -17,7 +19,7 @@ void CreateEnemyBullet(UINT16 x, UINT16 y, INT8 vx, INT8 vy) BANKED {
 	data->vx = vx;
 	data->vy = vy;
 
-	PlayFx(CHANNEL_1, 10, 0x2C, 0xD8, 0xF3, 0x62, 0xC7);
+	ExecuteSFX(BANK(FX_BULLET), FX_BULLET, SFX_MUTE_MASK(FX_BULLET), SFX_PRIORITY_NORMAL);
 }
 
 void START(void) {

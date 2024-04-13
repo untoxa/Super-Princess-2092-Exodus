@@ -8,6 +8,8 @@
 #include "Scroll.h"
 #include "Sound.h"
 
+#include "Sounds.h"
+
 typedef struct {
 	fixed ty, vy;
 } CUSTOM_DATA;
@@ -31,7 +33,7 @@ void UPDATE(void) {
 	if( TranslateSprite(THIS, 0, (INT16)data->ty.b.h)) {
 		SpriteManagerRemove(THIS_IDX);
 		SpriteManagerAdd(SpriteEnemyParticle, THIS->x, THIS->y);
-		PlayFx(CHANNEL_4, 20, 0x0d, 0xff, 0x7d, 0xc0);
+		ExecuteSFX(BANK(FX_EXPLOSION), FX_EXPLOSION, SFX_MUTE_MASK(FX_EXPLOSION), SFX_PRIORITY_HIGH);
 	}
 	data->ty.b.h = 0;
 }

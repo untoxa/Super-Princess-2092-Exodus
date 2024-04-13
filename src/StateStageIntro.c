@@ -19,11 +19,9 @@ void START(void) {
 	InitScroll(BANK(menuBG), &menuBG, 0, 0);
 
 	INIT_FONT(font, PRINT_BKG);
-	PRINT_POS(6, 6);
-	Printf("STAGE %d", (UINT16)(current_stage + 1));
+	PRINT(6, 6, "STAGE %d", (UINT16)(current_stage + 1));
 	PRINT(8, 8, "GO!");
-	PRINT_POS(4, 13);
-	Printf("%d LIFES LEFT", (UINT16)(n_lives));
+	PRINT(4, 13,"%d LIFES LEFT", (UINT16)(n_lives));
 
 	PlayMusic(exo_stage, 0);
 }

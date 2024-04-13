@@ -1,0 +1,33 @@
+#include "Banks/SetAutoBank.h"
+#include "Sound.h"
+
+#if defined(NINTENDO)
+
+BANKREF(FX_BULLET)
+void AT(CHANNEL_1) __mute_mask_FX_BULLET;
+const UINT8 FX_BULLET[] = { 0xA1, 0b11111000, 0x2C, 0xD8, 0xF3, 0x62, 0xC7,   0x01, 0b00000111};
+//PlayFx(CHANNEL_1, 10, 0x2C, 0xD8, 0xF3, 0x62, 0xC7);
+
+BANKREF(FX_EXPLOSION)
+void AT(CHANNEL_4) __mute_mask_FX_EXPLOSION;
+const UINT8 FX_EXPLOSION[] = { 0xA1, 0b01111011, 0x0d, 0xff, 0x7d, 0xc0,   0xA0,   0x01, 0b00000111};
+//PlayFx(CHANNEL_4, 20, 0x0d, 0xff, 0x7d, 0xc0);
+
+BANKREF(FX_HIT)
+void AT(CHANNEL_1) __mute_mask_FX_HIT;
+const UINT8 FX_HIT[] = { 0xA1, 0b11111000, 0x5b, 0x7f, 0xf7, 0x15, 0x86,   0x01, 0b00000111};
+//PlayFx(CHANNEL_1, 10, 0x5b, 0x7f, 0xf7, 0x15, 0x86);
+
+BANKREF(FX_JUMP)
+void AT(CHANNEL_1) __mute_mask_FX_JUMP;                                  
+const UINT8 FX_JUMP[] = { 0x51, 0b11111000, 0x17, 0x9f, 0xf3, 0xc9, 0xc4,   0x01, 0b00000111};
+//PlayFx(CHANNEL_1, 5, 0x17, 0x9f, 0xf3, 0xc9, 0xc4);
+
+
+BANKREF(FX_STAGE)
+void AT(CHANNEL_1) __mute_mask_FX_STAGE;
+const UINT8 FX_STAGE[] = { 0xA1, 0b11111000, 0x17, 0x81, 0xF3, 0x62, 0x87,   0x01, 0b00000111};
+//PlayFx(CHANNEL_1, 10, 0x17, 0x81, 0xF3, 0x62, 0x87);
+
+
+#endif 

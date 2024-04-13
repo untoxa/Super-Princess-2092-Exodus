@@ -3,10 +3,7 @@
 
 #include "SpriteManager.h"
 #include "Scroll.h"
-#include "Print.h"
 #include "Math.h"
-
-#include "Print.h"
 
 typedef struct {
 	INT8 vx, vy;

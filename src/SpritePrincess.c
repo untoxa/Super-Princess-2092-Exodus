@@ -9,8 +9,10 @@
 #include "Scroll.h"
 #include "SpriteManager.h"
 #include "Math.h"
+#include "Music.h"
 #include "Sound.h"
-#include "gbt_player.h"
+
+#include "Sounds.h"
 
 void CreatePParticle(UINT16 x, UINT16 y, INT8 vx, INT8 vy) BANKED;
 
@@ -66,10 +68,10 @@ void START(void) {
 
 void Hit(void) {
 	princes_state = PRINCESS_STATE_HIT;
-	gbt_stop();
+	StopMusic;
 
 	sfx_sound_init();
-	PlayFx(CHANNEL_1, 10, 0x5b, 0x7f, 0xf7, 0x15, 0x86);
+	ExecuteSFX(BANK(FX_HIT), FX_HIT, SFX_MUTE_MASK(FX_HIT), SFX_PRIORITY_HIGH);
 }
 
 UINT8 tile_collision;
@@ -161,7 +163,7 @@ void Jump(void) {
 		princes_state = PRINCESS_STATE_JUMPING;
 		princess_parent = 0;
 
-		PlayFx(CHANNEL_1, 5, 0x17, 0x9f, 0xf3, 0xc9, 0xc4);
+		ExecuteSFX(BANK(FX_JUMP), FX_JUMP, SFX_MUTE_MASK(FX_JUMP), SFX_PRIORITY_NORMAL);
 	}
 }
 
@@ -252,7 +254,7 @@ void UPDATE(void) {
 				if(bg_hidden) {
 					SHOW_BKG;
 					bg_hidden = 0;
-					PlayFx(CHANNEL_1, 10, 0x5b, 0x7f, 0xf7, 0x15, 0x86);
+					ExecuteSFX(BANK(FX_HIT), FX_HIT, SFX_MUTE_MASK(FX_HIT), SFX_PRIORITY_HIGH);
 				}
 			}
 

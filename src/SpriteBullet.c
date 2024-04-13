@@ -5,11 +5,12 @@
 
 #include "ZGBMain.h"
 #include "Scroll.h"
-
 #include "Sound.h"
 
+#include "Sounds.h"
+
 void START(void) {
-	PlayFx(CHANNEL_1, 10, 0x2C, 0xD8, 0xF3, 0x62, 0xC7);
+	ExecuteSFX(BANK(FX_BULLET), FX_BULLET, SFX_MUTE_MASK(FX_BULLET), SFX_PRIORITY_NORMAL);
 }
 
 void UPDATE(void) {
@@ -30,11 +31,11 @@ void UPDATE(void) {
 
 	SPRITEMANAGER_ITERATE(i, spr) {
 		if(spr->type == SpriteMushroom || spr->type == SpriteCeilingShooter || spr->type == SpriteShooter || spr->type == SpriteFly || 
-			 spr->type == SpriteRoller || spr->type == SpriteOvni || spr->type == SpriteMissile) {
+			spr->type == SpriteRoller || spr->type == SpriteOvni || spr->type == SpriteMissile) {
 			if(CheckCollision(THIS, spr)) {
 				if(spr->type != SpriteMushroom || spr->anim_data[1 + spr->anim_frame] == 1u) { //Mushroom can only die on frame 1
 					SpriteManagerRemove(i);
-					PlayFx(CHANNEL_4, 20, 0x0d, 0xff, 0x7d, 0xc0);
+					ExecuteSFX(BANK(FX_EXPLOSION), FX_EXPLOSION, SFX_MUTE_MASK(FX_EXPLOSION), SFX_PRIORITY_HIGH);
 				}
 				spr2 = SpriteManagerAdd(SpriteEnemyParticle, spr->x, spr->y);
 				SpriteManagerRemove(THIS_IDX);

@@ -12,6 +12,8 @@ IMPORT_TILES(font);
 #include "Music.h"
 #include "Sound.h"
 
+#include "Sounds.h"
+
 extern UINT8 current_stage;
 extern UINT8 current_level;
 extern UINT8 n_lives;
@@ -22,9 +24,8 @@ DECLARE_MUSIC(levelselect);
 void SetStage(UINT8 stage) {
 	current_stage = stage;
 
-	PRINT_POS(6, 13);
-	Printf("STAGE %d", (UINT16)stage + 1);
-	PlayFx(CHANNEL_1, 10, 0x17, 0x81, 0xF3, 0x62, 0x87);
+	PRINT(6, 13, "STAGE %d", (UINT16)stage + 1);
+	ExecuteSFX(BANK(FX_STAGE), FX_STAGE, SFX_MUTE_MASK(FX_STAGE), SFX_PRIORITY_NORMAL);
 }
 
 void START(void) {

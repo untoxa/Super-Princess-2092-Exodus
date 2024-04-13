@@ -7,6 +7,7 @@
 #include "SpriteManager.h"
 #include "Math.h"
 #include "Music.h"
+#include "Print.h"
 
 #include "ZGBMain.h"
 
@@ -40,7 +41,6 @@ IMPORT_MAP(stage3_6);
 IMPORT_MAP(stage3_7);
 IMPORT_MAP(stage3_8);
 
-#include "Print.h"
 IMPORT_TILES(font);
 
 const UINT8 collision_tiles_1[] = {1, 2, 27, 28, 33, 35, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 0};

@@ -6,11 +6,10 @@
 #include "Scroll.h"
 #include "Keys.h"
 #include "Music.h"
+#include "Print.h"
 
 IMPORT_MAP(menuBG);
 IMPORT_TILES(font);
-
-#include "Print.h"
 
 DECLARE_MUSIC(exo_stage);
 extern UINT8 n_lives;
@@ -19,8 +18,7 @@ void START(void) {
 	InitScroll(BANK(menuBG), &menuBG, 0, 0);
 
 	INIT_FONT(font, PRINT_BKG);
-	PRINT_POS(4, 8);
-	Printf("%d LIFES LEFT", (UINT16)(n_lives));
+	PRINT(4, 8, "%d LIFES LEFT", (UINT16)(n_lives));
 
 	PlayMusic(exo_stage, 0);
 }
