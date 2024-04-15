@@ -41,8 +41,10 @@ struct EndSpriteInfo {
 
 #if defined(SEGA)
 #define TEXT_Y_OFS 12
+#define TEXT_X_OFS -scroll_offset_x
 #else
 #define TEXT_Y_OFS 0
+#define TEXT_X_OFS 0
 #endif
 
 const struct EndSpriteInfo endSpritesInfo[] = {
@@ -78,26 +80,35 @@ void PrepareEnemy(void) {
 const char* Credits[] = {
 	"    PROGRAMMING     ",
 	"       ZAL0         ",
+
 	"      GRAPHICS      ",
 	"      SERGEEO       ",
+
 	"    LEVEL DESIGN    ",
 	"      SERGEEO       ",
+
 	"EXTRA ART AND LEVELS",
 	"       ZAL0         ",
+
 	"       MUSIC        ",
 	"      SERGEEO       ",
+
+	"   CROSS PLATFORM   ",
+	"       TOXA         ",
+
 	"   SPECIAL THANKS   ",
 	"     ANTONIOND      ",
+
 	"     THANK YOU      ",
 	"    FOR PLAYING!    ",
-	""
+	NULL
 };
 
 void PrepareCredits(void) {
 	text_wait = 300;
 
-	PRINT(0, TEXT_Y_OFS + 0, Credits[enemy_idx ++]);
-	PRINT(0, TEXT_Y_OFS + 2, Credits[enemy_idx ++]);
+	PRINT(TEXT_X_OFS, TEXT_Y_OFS + 0, Credits[enemy_idx ++]);
+	PRINT(TEXT_X_OFS, TEXT_Y_OFS + 2, Credits[enemy_idx ++]);
 }
 
 void SetEndState(UINT8 state) {
@@ -207,7 +218,7 @@ void UPDATE(void) {
  					end_enemy_x -= (UINT16)1;
 					if(end_enemy_x <= 72) {
 						text_wait = 100;
-						PRINT((20u - STRLEN(endSpritesInfo[enemy_idx].name)) >> 1, TEXT_Y_OFS + 4, endSpritesInfo[enemy_idx].name);
+						PRINT(TEXT_X_OFS + ((20u - STRLEN(endSpritesInfo[enemy_idx].name)) >> 1), TEXT_Y_OFS + 4, endSpritesInfo[enemy_idx].name);
 					}
 				} else {
 					end_enemy_x --;
@@ -224,7 +235,7 @@ void UPDATE(void) {
 			} else {
 				text_wait --;
 				if(text_wait == 0) {
-					PRINT(0, TEXT_Y_OFS + 4, "                    ");
+					PRINT(TEXT_X_OFS, TEXT_Y_OFS + 4, "                    ");
 				}
 			}
 			end_sprite->x = scroll_x + (UINT16)end_enemy_x;
@@ -235,10 +246,10 @@ void UPDATE(void) {
 		case CREDITS:
 			text_wait --;
 			if(text_wait == 0) {
-				if(Credits[enemy_idx][0] == '\0') {
-					SetEndState(DONE);
-				} else {
+				if(Credits[enemy_idx]) {
 					PrepareCredits();
+				} else {
+					SetEndState(DONE);
 				}
 			}
 			break;
