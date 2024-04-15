@@ -9,7 +9,7 @@
 #include "Print.h"
 
 IMPORT_MAP(menuBG);
-IMPORT_TILES(font);
+IMPORT_FONT(font);
 
 DECLARE_MUSIC(exo_stage);
 extern UINT8 n_lives;
@@ -17,7 +17,7 @@ extern UINT8 n_lives;
 void START(void) {
 	InitScroll(BANK(menuBG), &menuBG, 0, 0);
 
-	INIT_FONT(font, PRINT_BKG);
+	INIT_FONT_EX(font, PRINT_BKG);
 	PRINT(4, 8, "%d LIFES LEFT", (UINT16)(n_lives));
 
 	PlayMusic(exo_stage, 0);

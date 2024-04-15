@@ -11,7 +11,7 @@
 
 IMPORT_MAP(stageEndingWindow);
 IMPORT_MAP(stageEnding);
-IMPORT_TILES(font);
+IMPORT_FONT(font);
 
 fixed scroll_p_x;
 extern UINT8 n_sprite_types;
@@ -169,11 +169,11 @@ void START(void) {
 	scroll_p_x.w = 0;
 
 	#if defined(NINTENDO)
-	INIT_FONT(font, PRINT_WIN);
+	INIT_FONT_EX(font, PRINT_WIN);
 	INIT_HUD(stageEndingWindow);
 	SetWindowY(144 - (6 << 3));
 	#elif defined(SEGA)
-	INIT_FONT(font, PRINT_BKG);
+	INIT_FONT_EX(font, PRINT_BKG);
 	#endif
 
 	for(i = 0; i != N_SPRITE_TYPES; ++ i) {

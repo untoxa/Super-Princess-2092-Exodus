@@ -2,7 +2,7 @@
 #include "main.h"
 
 IMPORT_MAP(stageSelect);
-IMPORT_TILES(font);
+IMPORT_FONT(font);
 
 #include "ZGBMain.h"
 #include "Print.h"
@@ -35,7 +35,7 @@ void START(void) {
 	} else {
 		InitScroll(BANK(stageSelect), &stageSelect, 0, 0);
 	
-		INIT_FONT(font, PRINT_BKG);
+		INIT_FONT_EX(font, PRINT_BKG);
 		PRINT(4, 11, "STAGE SELECT");
 
 		for(current_stage = 0; current_stage != 3; current_stage += 1) {
