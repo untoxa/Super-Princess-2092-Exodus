@@ -9,6 +9,8 @@
 
 #include "Sounds.h"
 
+extern const UINT8 mushroom_anim_show[];
+
 void START(void) {
 	ExecuteSFX(BANK(FX_BULLET), FX_BULLET, SFX_MUTE_MASK(FX_BULLET), SFX_PRIORITY_NORMAL);
 }
@@ -33,7 +35,7 @@ void UPDATE(void) {
 		if(spr->type == SpriteMushroom || spr->type == SpriteCeilingShooter || spr->type == SpriteShooter || spr->type == SpriteFly || 
 			spr->type == SpriteRoller || spr->type == SpriteOvni || spr->type == SpriteMissile) {
 			if(CheckCollision(THIS, spr)) {
-				if(spr->type != SpriteMushroom || spr->anim_data[1 + spr->anim_frame] == 1u) { //Mushroom can only die on frame 1
+				if((spr->type != SpriteMushroom) || (spr->anim_data == mushroom_anim_show)) { //Mushroom can only die on frame 1
 					SpriteManagerRemove(i);
 					ExecuteSFX(BANK(FX_EXPLOSION), FX_EXPLOSION, SFX_MUTE_MASK(FX_EXPLOSION), SFX_PRIORITY_HIGH);
 				}
