@@ -8,6 +8,7 @@
 #include "Scroll.h"
 #include "Keys.h"
 #include "Music.h"
+#include "Palette.h"
 
 IMPORT_MAP(pressstarttilemap);
 IMPORT_BORDER(border);
@@ -16,6 +17,7 @@ DECLARE_MUSIC(exo_start);
 
 void START(void) {
 	MAP_OVERLAP_SPR;
+	SetBorderColor(RGB(0, 0, 0));
 	LOAD_SGB_BORDER(border);
 
 	InitScroll(BANK(pressstarttilemap), &pressstarttilemap, 0, 0);

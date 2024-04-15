@@ -96,6 +96,9 @@ const char* Credits[] = {
 	"   CROSS PLATFORM   ",
 	"       TOXA         ",
 
+	"  GAME GEAR COLORS  ",
+	"    BADCOMPUTER     ",
+
 	"   SPECIAL THANKS   ",
 	"     ANTONIOND      ",
 
@@ -106,7 +109,7 @@ const char* Credits[] = {
 
 void PrepareCredits(void) {
 	text_wait = 300;
-
+        wait_vbl_done();
 	PRINT(TEXT_X_OFS, TEXT_Y_OFS + 0, Credits[enemy_idx ++]);
 	PRINT(TEXT_X_OFS, TEXT_Y_OFS + 2, Credits[enemy_idx ++]);
 }
@@ -218,6 +221,7 @@ void UPDATE(void) {
  					end_enemy_x -= (UINT16)1;
 					if(end_enemy_x <= 72) {
 						text_wait = 100;
+						wait_vbl_done();
 						PRINT(TEXT_X_OFS + ((20u - STRLEN(endSpritesInfo[enemy_idx].name)) >> 1), TEXT_Y_OFS + 4, endSpritesInfo[enemy_idx].name);
 					}
 				} else {
@@ -235,6 +239,7 @@ void UPDATE(void) {
 			} else {
 				text_wait --;
 				if(text_wait == 0) {
+					wait_vbl_done();
 					PRINT(TEXT_X_OFS, TEXT_Y_OFS + 4, "                    ");
 				}
 			}

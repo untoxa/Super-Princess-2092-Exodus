@@ -68,6 +68,7 @@ void START(void) {
 }
 
 void Hit(void) {
+//	return;	// invincibility
 	princes_state = PRINCESS_STATE_HIT;
 	StopMusic;
 
