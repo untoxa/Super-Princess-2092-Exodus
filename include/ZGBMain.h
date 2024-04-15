@@ -1,14 +1,13 @@
 #ifndef ZGBMAIN_H
 #define ZGBMAIN_H
 
-#define STATES             \
+#define STATES            \
 _STATE(StateMenu)         \
 _STATE(StateGame)         \
 _STATE(StateLiveLost)     \
 _STATE(StateGameOver)     \
 _STATE(StateStageIntro)   \
-_STATE(StateWin)          \
-_STATE(StateStageSelect) \
+_STATE(StateStageSelect)  \
 _STATE(StateEnding)       \
 STATE_DEF_END
 
