@@ -1,9 +1,10 @@
 #include "Banks/SetAutoBank.h"
 #include "main.h"
+#include "Vector.h"
 
 #include "SpriteManager.h"
 
-const UINT8 eparticle_anim[] = {5, 0, 1, 2, 3, 3};
+const UINT8 eparticle_anim[] = VECTOR(0, 1, 2, 3, 3);
 
 void START(void) {
 	SetSpriteAnim(THIS, eparticle_anim, 33);

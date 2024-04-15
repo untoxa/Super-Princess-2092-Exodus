@@ -7,7 +7,7 @@
 #include "Math.h"
 #include "Print.h"
 #include "Music.h"
-#include "main.h"
+#include "Vector.h"
 
 IMPORT_MAP(stageEndingWindow);
 IMPORT_MAP(stageEnding);
@@ -20,7 +20,7 @@ extern UINT8 spriteIdxs[];
 Sprite* end_sprite_princess;
 Sprite* end_sprite;
 
-const UINT8 end_anim_walk[] = {4, 3, 4, 5, 4};
+const UINT8 end_anim_walk[] = VECTOR(3, 4, 5, 4);
 
 INT8 end_princess_screen_x;
 

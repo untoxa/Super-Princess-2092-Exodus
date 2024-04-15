@@ -2,13 +2,14 @@
 #include "main.h"
 
 #include "SpriteManager.h"
+#include "Vector.h"
 
 #include "Math.h"
 
 void CreateEnemyBullet(UINT16 x, UINT16 y, INT8 vx, INT8 vy) BANKED;
 
-const UINT8 mushroom_anim_hide[] = {1, 0};
-const UINT8 mushroom_anim_show[] = {1, 1};
+const UINT8 mushroom_anim_hide[] = VECTOR(0);
+const UINT8 mushroom_anim_show[] = VECTOR(1);
 
 typedef struct {
 	UINT8 time_out;

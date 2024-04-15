@@ -3,8 +3,9 @@
 
 #include "SpriteManager.h"
 #include "ZGBMain.h"
+#include "Vector.h"
 
-const UINT8 pparticle_anim_idle[] = {2, 0, 1};
+const UINT8 pparticle_anim_idle[] = VECTOR(0, 1);
 
 typedef struct {
 	INT16 vx;

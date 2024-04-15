@@ -7,6 +7,7 @@
 #include "SpriteManager.h"
 #include "Math.h"
 #include "Music.h"
+#include "Vector.h"
 
 #include "ZGBMain.h"
 

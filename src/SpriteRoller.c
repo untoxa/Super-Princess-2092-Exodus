@@ -5,8 +5,9 @@
 #include "Scroll.h"
 #include "Math.h"
 #include "Sprite.h"
+#include "Vector.h"
 
-const UINT8 roller_anim_roll[] = {4, 0, 1, 2, 3};
+const UINT8 roller_anim_roll[] = VECTOR(0, 1, 2, 3);
 
 typedef struct {
 	fixed tx, ty;

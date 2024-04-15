@@ -11,6 +11,7 @@
 #include "Math.h"
 #include "Music.h"
 #include "Sound.h"
+#include "Vector.h"
 
 #include "Sounds.h"
 
@@ -19,15 +20,15 @@ void CreatePParticle(UINT16 x, UINT16 y, INT8 vx, INT8 vy) BANKED;
 //#define DEBUG_CONTROLS
 
 //Princes anims
-const UINT8 anim_walk[]       = {4, 3, 4, 5, 4};
-const UINT8 anim_idle[]       = {2, 1, 2};
-const UINT8 anim_idle_shoot[] = {1, 0};
-const UINT8 anim_jump[]       = {1, 3};
-const UINT8 anim_ladder_idle_cooldown[]   = {1, 9};
-const UINT8 anim_ladder_moving_cooldown[] = {2, 9, 10};
-const UINT8 anim_ladder_idle[]   = {1, 7};
-const UINT8 anim_ladder_moving[] = {2, 7, 8};
-const UINT8 anim_hit[] = {6, 1, 6, 1, 6, 1, 6};
+const UINT8 anim_walk[]          = VECTOR(3, 4, 5, 4);
+const UINT8 anim_idle[]          = VECTOR(1, 2);
+const UINT8 anim_idle_shoot[]    = VECTOR(0);
+const UINT8 anim_jump[]          = VECTOR(3);
+const UINT8 anim_ladder_idle_cooldown[]   = VECTOR(9);
+const UINT8 anim_ladder_moving_cooldown[] = VECTOR(9, 10);
+const UINT8 anim_ladder_idle[]   = VECTOR(7);
+const UINT8 anim_ladder_moving[] = VECTOR(7, 8);
+const UINT8 anim_hit[]           = VECTOR(1, 6, 1, 6, 1, 6);
 
 typedef enum  {
 	PRINCESS_STATE_NORMAL,

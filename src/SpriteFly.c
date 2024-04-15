@@ -4,6 +4,7 @@
 #include "Scroll.h"
 #include "Math.h"
 #include "SpriteManager.h"
+#include "Vector.h"
 
 
 typedef struct {
@@ -12,7 +13,7 @@ typedef struct {
 } CUSTOM_DATA;
 
 
-const UINT8 anim_fly[] = {2, 0, 1};
+const UINT8 anim_fly[] = VECTOR(0, 1);
 
 #define DIST_ACTION 40
 #define DIST_COUNTER 40
