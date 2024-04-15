@@ -7,7 +7,6 @@
 #include "SpriteManager.h"
 #include "Math.h"
 #include "Music.h"
-#include "Print.h"
 
 #include "ZGBMain.h"
 
@@ -40,8 +39,6 @@ IMPORT_MAP(stage3_5);
 IMPORT_MAP(stage3_6);
 IMPORT_MAP(stage3_7);
 IMPORT_MAP(stage3_8);
-
-IMPORT_TILES(font);
 
 const UINT8 collision_tiles_1[] = {1, 2, 27, 28, 33, 35, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 0};
 const UINT8 collision_tiles_down_1[] = {59, 60, 0};
@@ -138,8 +135,6 @@ void START(void) {
 	const struct MapInfoBanked* levels = stages[current_stage];
 	const struct MapInfoBanked* level = &levels[current_level];
 	UINT8 map_w, map_h;
-
-	INIT_CONSOLE(font, 3, 2);
 
 	GetMapSize(level->bank, level->map, &map_w, &map_h);
 	ScrollFindTile(level->bank, level->map, 2, 
