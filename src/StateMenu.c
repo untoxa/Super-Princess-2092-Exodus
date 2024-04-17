@@ -16,7 +16,6 @@ IMPORT_BORDER(border);
 DECLARE_MUSIC(exo_start);
 
 void START(void) {
-	MAP_OVERLAP_SPR;
 	SetBorderColor(RGB(0, 0, 0));
 	LOAD_SGB_BORDER(border);
 
@@ -30,5 +29,6 @@ void UPDATE(void) {
 	if(KEY_TICKED(J_START)) {
 		stage_completion = 0;
 		SetState(StateStageSelect);
+//		SetState(StateEnding);	// for debugging purposes
 	}
 }

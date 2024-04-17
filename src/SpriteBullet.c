@@ -12,7 +12,7 @@
 extern const UINT8 mushroom_anim_show[];
 
 void START(void) {
-	ExecuteSFX(BANK(FX_BULLET), FX_BULLET, SFX_MUTE_MASK(FX_BULLET), SFX_PRIORITY_NORMAL);
+	ExecuteSFX(BANK(FX_BULLET), FX_BULLET, SFX_MUTE_MASK(FX_BULLET), SFX_PRIORITY_NORMAL + 1);
 }
 
 void UPDATE(void) {

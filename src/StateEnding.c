@@ -99,6 +99,9 @@ const char* Credits[] = {
 	"  GAME GEAR COLORS  ",
 	"    BADCOMPUTER     ",
 
+	"  GAME GEAR MUSIC   ",
+	"      CHIRINEA      ",
+
 	"   SPECIAL THANKS   ",
 	"     ANTONIOND      ",
 
