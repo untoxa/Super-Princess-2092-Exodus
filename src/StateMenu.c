@@ -15,9 +15,17 @@ IMPORT_BORDER(border);
 
 DECLARE_MUSIC(exo_start);
 
+UINT8 sgb_initialized = FALSE;
+
 void START(void) {
 	SetBorderColor(RGB(0, 0, 0));
-	LOAD_SGB_BORDER(border);
+	
+	if (!sgb_initialized) {
+		sgb_initialized = TRUE;
+		scroll_x_vblank = scroll_y_vblank = 0; 
+		scroll_offset_x = scroll_offset_y = 0;
+		LOAD_SGB_BORDER(border); 
+	}
 
 	InitScroll(BANK(pressstarttilemap), &pressstarttilemap, 0, 0);
 
