@@ -18,7 +18,6 @@ void START(void) {
 void UPDATE(void) {
 	UINT8 i;
 	Sprite* spr;
-	Sprite* spr2;
 	
 	if(THIS->mirror ==  V_MIRROR) {
 		THIS->x -= 3 << delta_time;
@@ -32,17 +31,30 @@ void UPDATE(void) {
 	}
 
 	SPRITEMANAGER_ITERATE(i, spr) {
-		if(spr->type == SpriteMushroom || spr->type == SpriteCeilingShooter || spr->type == SpriteShooter || spr->type == SpriteFly || 
-			spr->type == SpriteRoller || spr->type == SpriteOvni || spr->type == SpriteMissile) {
-			if(CheckCollision(THIS, spr)) {
-				if((spr->type != SpriteMushroom) || (spr->anim_data == mushroom_anim_show)) { //Mushroom can only die on frame 1
-					SpriteManagerRemove(i);
-					ExecuteSFX(BANK(FX_EXPLOSION), FX_EXPLOSION, SFX_MUTE_MASK(FX_EXPLOSION), SFX_PRIORITY_HIGH);
+		switch (spr->type) {
+			case SpriteMushroom:
+				if (CheckCollision(THIS, spr)) {
+					if (spr->anim_data == mushroom_anim_show) {
+						SpriteManagerRemoveSprite(spr);
+						ExecuteSFX(BANK(FX_EXPLOSION), FX_EXPLOSION, SFX_MUTE_MASK(FX_EXPLOSION), SFX_PRIORITY_HIGH);
+					}
+					SpriteManagerAdd(SpriteEnemyParticle, spr->x, spr->y);
+					SpriteManagerRemoveSprite(THIS);
 				}
-				spr2 = SpriteManagerAdd(SpriteEnemyParticle, spr->x, spr->y);
-				SpriteManagerRemove(THIS_IDX);
 				break;
-			}
+			case SpriteCeilingShooter:
+			case SpriteShooter: 
+			case SpriteFly:
+			case SpriteRoller: 
+			case SpriteOvni: 
+			case SpriteMissile:
+				if (CheckCollision(THIS, spr)) {
+					SpriteManagerRemoveSprite(spr);
+					ExecuteSFX(BANK(FX_EXPLOSION), FX_EXPLOSION, SFX_MUTE_MASK(FX_EXPLOSION), SFX_PRIORITY_HIGH);
+					SpriteManagerAdd(SpriteEnemyParticle, spr->x, spr->y);
+					SpriteManagerRemoveSprite(THIS);
+				}
+				break;
 		}
 	}
 }
