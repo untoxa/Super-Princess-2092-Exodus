@@ -104,7 +104,7 @@ extern Sprite* sprite_princess;
 void InitPlayerPos(UINT16 tile_start_x, UINT16 tile_start_y) {
 	const struct MapInfoBanked* levels = stages[current_stage];
 	const struct MapInfoBanked* map = &levels[current_level];
-	UINT8 map_w, map_h;
+	UINT16 map_w, map_h;
 	GetMapSize(map->bank, map->map, &map_w, &map_h);
 
 	if(tile_start_x == 0) {
@@ -135,7 +135,7 @@ void START(void) {
 	const UINT8* coll_down_list = 0;
 	const struct MapInfoBanked* levels = stages[current_stage];
 	const struct MapInfoBanked* level = &levels[current_level];
-	UINT8 map_w, map_h;
+	UINT16 map_w, map_h;
 
 	GetMapSize(level->bank, level->map, &map_w, &map_h);
 	ScrollFindTile(level->bank, level->map, 2, 
@@ -178,9 +178,7 @@ void ScrollFindTileInCorners(UINT16 map_w, UINT16 map_h, const struct MapInfoBan
 	if(ScrollFindTile(map->bank, map->map, tile, 0, 0, 1, map_h, x, y)) {
 		return;
 	}
-	if(ScrollFindTile(map->bank, map->map, tile, map_w - 1, 0, 1, map_h, x, y)) {
-		return;
-	}
+	ScrollFindTile(map->bank, map->map, tile, map_w - 1, 0, 1, map_h, x, y);
 }
 
 INT8 load_next = 0;
@@ -199,7 +197,7 @@ void LoadNextScreen(UINT8 current_level, UINT8 next_level) {
 	const struct MapInfoBanked* levels = stages[current_stage];
 	const struct MapInfoBanked* next_map = &levels[next_level];
 	const struct MapInfoBanked* current_map = &levels[current_level];
-	UINT8 next_level_w, next_level_h, current_level_w, current_level_h;
+	UINT16 next_level_w, next_level_h, current_level_w, current_level_h;
 
 	GetMapSize(next_map->bank, next_map->map, &next_level_w, &next_level_h);
 	GetMapSize(current_map->bank, current_map->map, &current_level_w, &current_level_h);

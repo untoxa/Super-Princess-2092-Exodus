@@ -25,7 +25,7 @@ void UPDATE(void) {
 		THIS->x += 3 << delta_time;
 	}
 
-	if(scroll_collisions[GetScrollTile((THIS->x + 4)>> 3, (THIS->y + 4) >> 3)]) {
+	if(scroll_collisions[GetScrollTile((THIS->x + 4)>> 3, (THIS->y + 4) >> 3)] & THIS->coll_group) {
 		SpriteManagerRemove(THIS_IDX);
 		return;
 	}

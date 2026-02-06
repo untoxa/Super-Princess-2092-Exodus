@@ -16,7 +16,7 @@ void START(void) {
 	CUSTOM_DATA* data = (CUSTOM_DATA*)THIS->custom_data;
 	data->cool_down = 70;
 
-	if(scroll_collisions[tile] == 1u) {
+	if(scroll_collisions[tile] & THIS->coll_group) {
 		THIS->mirror = V_MIRROR;
 	}
 }
